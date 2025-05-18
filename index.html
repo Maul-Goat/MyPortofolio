@@ -165,7 +165,7 @@
     </section>
 
    <!-- Video Gallery Section -->
-    <!-- <section id="videos">
+    <section id="videos">
         <div class="container">
         <h2 class="section-title">Video Edits</h2>
         <div class="video-slider">
@@ -173,7 +173,7 @@
             <button class="video-nav-btn next-btn">&#10095;</button>
 
             <div class="video-container">
-                
+                <!-- Video 1 -->
                 <div class="video-slide active">
                     <video controls>
                         <source src="assets/kaoruko cc.mp4" type="video/mp4">
@@ -181,15 +181,15 @@
                     </video>
                 </div>
 
-                
+                <!-- Video 2 -->
                 <div class="video-slide next">
                     <video controls>
-                        <source src="assets/castorice3 cc1.mp4" type="video/mp4"> 
+                        <source src="assets/castorice3 cc1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
 
-              
+                <!-- Video 3 -->
                 <div class="video-slide">
                     <video controls>
                         <source src="assets/kaoruko lagi cc.mp4" type="video/mp4">
@@ -197,7 +197,7 @@
                     </video>
                 </div>
                 
-                
+                <!-- Video 4 -->
                 <div class="video-slide">
                     <video controls>
                         <source src="assets/hutao i love cc1.mp4" type="video/mp4">
@@ -205,7 +205,7 @@
                     </video>
                 </div>
                 
-                <!
+                <!-- Video 5 -->
                 <div class="video-slide prev">
                     <video controls>
                         <source src="assets/kaoruko.mp4" type="video/mp4">
@@ -225,7 +225,7 @@
             </div>
         </div>
     </div>
-    </section>  -->
+    </section> 
 
     <!-- Portfolio Section -->
     <section id="portfolio">
@@ -352,52 +352,58 @@
     <!-- JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Hamburger Menu Toggle
-        const navSlide = () => {
-            const burger = document.querySelector('.burger');
-            const nav = document.querySelector('.nav-links');
-            const navLinks = document.querySelectorAll('.nav-links li');
-            
-            burger.addEventListener('click', () => {
-                // Toggle Nav
-                nav.classList.toggle('nav-active');
+        // Script to fix the mobile navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger Menu Toggle
+            const navSlide = () => {
+                const burger = document.querySelector('.burger');
+                const nav = document.querySelector('.nav-links');
+                const navLinks = document.querySelectorAll('.nav-links li');
                 
-                // Animate Links
-                navLinks.forEach((link, index) => {
-                    if (link.style.animation) {
-                        link.style.animation = '';
-                    } else {
-                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                burger.addEventListener('click', () => {
+                    // Toggle Nav
+                    nav.classList.toggle('nav-active');
+                    
+                    // Animate Links
+                    navLinks.forEach((link, index) => {
+                        if (link.style.animation) {
+                            link.style.animation = '';
+                        } else {
+                            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                        }
+                    });
+                    
+                    // Burger Animation
+                    burger.classList.toggle('toggle');
+                });
+            };
+            
+            // Call the navSlide function to initialize it
+            navSlide();
+            
+            // Rest of your existing code...
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const nav = document.querySelector('.nav-links');
+                    const burger = document.querySelector('.burger');
+                    if (nav.classList.contains('nav-active')) {
+                        nav.classList.remove('nav-active');
+                        burger.classList.remove('toggle');
                     }
                 });
-                
-                // Burger Animation
-                burger.classList.toggle('toggle');
-            });
-        };
-        
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                const nav = document.querySelector('.nav-links');
-                const burger = document.querySelector('.burger');
-                if (nav.classList.contains('nav-active')) {
-                    nav.classList.remove('nav-active');
-                    burger.classList.remove('toggle');
-                }
             });
         });
         
-        // Init
         // Initialize video carousel
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const slides = document.querySelectorAll('.video-slide');
     const dots = document.querySelectorAll('.video-dot');
     const prevBtn = document.querySelector('.prev-btn');
